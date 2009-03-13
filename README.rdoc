@@ -1,0 +1,30 @@
+= PersonName
+
+Author:: Joel Parker Henderson, joelparkerhenderson@gmail.com
+Copyright:: Copyright (c) 2006-2008 Joel Parker Henderson
+License:: CreativeCommons License, Non-commercial Share Alike
+License:: LGPL, GNU Lesser General Public License
+
+Return the person's name in various ways.
+
+==Example
+  class User < ActiveRecord::Base
+    include PersonName
+  end
+
+  u=User.new  
+  u.first_name = 'Zora'
+  u.middle_name = 'Neale'
+  u.last_name = 'Hurston'
+
+  u.full_name => "Zora Neale Hurston"
+  u.list_name => "Hurston, Zora Neale"
+
+==Suggestion
+
+To make these very fast in Rails, try using the memoize approach:
+  class User < ActiveRecord::Base
+    include PersonName
+    memoize :full_name
+    memoize :list_name
+  end

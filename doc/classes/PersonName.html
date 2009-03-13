@@ -1,0 +1,315 @@
+
+<html><head>
+  <title>Module: PersonName</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript" language="JavaScript">
+  <!--
+  function popCode(url) {
+    parent.frames.source.location = url
+  }
+  //-->
+  </script>
+</head>
+<body bgcolor="white">
+
+
+<table width="100%" border="0" cellspacing="0">
+ <tr class="title-row">
+ <td class="big-title-font">
+   <font size="-3"><b>Module</b><br /></font>PersonName
+ </td>
+ <td align="right">
+   <table cellspacing="0" cellpadding="2">
+     <tr valign="top">
+      <td class="small-title-font">In:</td>
+      <td class="small-title-font">
+<a href="../files/lib/person_name_rb.html">lib/person_name.rb</a>
+      </td>
+     </tr>
+   </table>
+  </td>
+  </tr>
+</table><br />
+  <!-- banner header -->
+
+
+<div class="indent">
+<div class="description">
+<h1><a href="PersonName.html">PersonName</a></h1>
+<table>
+<tr><td valign="top">Author:</td><td>Joel Parker Henderson, joelparkerhenderson@gmail.com
+
+</td></tr>
+<tr><td valign="top">Copyright:</td><td>Copyright (c) 2006-2008 Joel Parker Henderson
+
+</td></tr>
+<tr><td valign="top">License:</td><td>CreativeCommons License, Non-commercial Share Alike
+
+</td></tr>
+<tr><td valign="top">License:</td><td>LGPL, GNU Lesser General Public License
+
+</td></tr>
+</table>
+<p>
+Return the person&#8216;s name in various ways.
+</p>
+<h2>Example</h2>
+<pre>
+  class User &lt; ActiveRecord::Base
+    include PersonName
+  end
+
+  u=User.new
+  u.first_name = 'Zora'
+  u.middle_name = 'Neale'
+  u.last_name = 'Hurston'
+
+  u.full_name =&gt; &quot;Zora Neale Hurston&quot;
+  u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+</pre>
+<h2>Suggestion</h2>
+<p>
+To make these very fast in Rails, try using the memoize approach:
+</p>
+<pre>
+  class User &lt; ActiveRecord::Base
+    include PersonName
+    memoize :full_name
+    memoize :list_name
+  end
+</pre>
+
+</div>
+</div>
+
+
+
+<div class="indent">
+<div class="methods">
+<table class="tablemethods" cellpadding="5" width="100%">
+<tr><td class="tablesubtitle">Methods</td></tr>
+</table>
+<div class="name-list">
+<ul>
+<li><a href="#M000026">first_name?</a>
+<li><a href="#M000023">first_name_middle_initial_last_name</a>
+<li><a href="#M000024">full_name</a>
+<li><a href="#M000028">last_name?</a>
+<li><a href="#M000025">list_name</a>
+<li><a href="#M000027">middle_name?</a>
+</ul>
+</div>
+</div>
+</div>
+
+
+    <div class="indent">
+    <div id="section">
+
+
+
+  
+
+<!--IF:method_list-->
+<div class="method_list">
+<!--START:method_list-->
+<!--IF:methods -->
+<h2>Public Instance methods</h2>
+<div class="methods">
+<!--START:methods-->
+<h2 class="methodname"><a name="M000026">
+
+ <b>first_name?</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return true iff the person has a first name and its non-blank
+</p>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 83</span>
+83:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name?</span>
+84:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:first_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+85:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+<!--START:methods-->
+<h2 class="methodname"><a name="M000023">
+
+ <b>first_name_middle_initial_last_name</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return the person&#8216;s first name + middle initial + last name
+</p>
+<h2>Example</h2>
+<pre>
+  u.first_name_middle_initial_last_name =&gt; &quot;Zora N Hurston&quot;
+</pre>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 40</span>
+40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_initial_last_name</span>
+41:    <span class="ruby-identifier">pieces</span> = []
+42:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+43:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">1</span>])   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+44:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+45:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+<!--START:methods-->
+<h2 class="methodname"><a name="M000024">
+
+ <b>full_name</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return the person&#8216;s full name: first_name middle_name last_name
+</p>
+<h2>Example</h2>
+<pre>
+  u.full_name =&gt; &quot;Zora Neale Hurston&quot;
+</pre>
+<p>
+This method skips any piece of the name that is missing or blank.
+</p>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full_name</span>
+57:     <span class="ruby-identifier">pieces</span> = []
+58:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+59:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+60:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+61:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+62:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+<!--START:methods-->
+<h2 class="methodname"><a name="M000028">
+
+ <b>last_name?</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return true iff the person has a last name and its non-blank
+</p>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 97</span>
+97:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_name?</span>
+98:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:last_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+99:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+<!--START:methods-->
+<h2 class="methodname"><a name="M000025">
+
+ <b>list_name</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return the person&#8216;s list name: last_name, first_name middle_name
+</p>
+<h2>Example</h2>
+<pre>
+  u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+</pre>
+<p>
+This method skips any piece of the name that is missing or blank.
+</p>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 72</span>
+72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_name</span>
+73:     <span class="ruby-identifier">pieces</span> = []
+74:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+75:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+76:     (<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span>(<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value str">','</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>))) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+77:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+78:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+<!--START:methods-->
+<h2 class="methodname"><a name="M000027">
+
+ <b>middle_name?</b>()
+</a>
+</h2>
+
+<!--IF:m_desc-->
+<div class="description">
+<p>
+Return true iff the person has a middle name and its non-blank
+</p>
+</div><!--description-->
+<!--ENDIF:m_desc-->
+<!--IF:sourcecode -->
+<div class="sourcecode">
+<h2>Source Code</h2>
+<pre>
+    <span class="ruby-comment cmt"># File lib/person_name.rb, line 90</span>
+90:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">middle_name?</span>
+91:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:middle_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+92:   <span class="ruby-keyword kw">end</span>
+</pre>
+</div><!--sourcecode-->
+<!-- ENDIF:sourcecode-->
+<!-- END methods -->
+</div><!--methods-->
+<!--ENDIF:methods-->
+</div><!-- END method_list -->
+</div><!-- ENDIF method_list -->
+  <!-- method descriptions -->
+
+
+</div><!-- indent -->
+</body>
+</html>
