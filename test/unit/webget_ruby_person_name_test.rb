@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'person_name'
+require 'webget_ruby_person_name'
 
 class PersonNameTest < Test::Unit::TestCase
 

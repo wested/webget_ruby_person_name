@@ -1,7 +1,8 @@
-= PersonName
+
+= WebGet Ruby Gem: PersonName
 
 Author:: Joel Parker Henderson, joelparkerhenderson@gmail.com
-Copyright:: Copyright (c) 2006-2009 Joel Parker Henderson
+Copyright:: Copyright (c) 2006-2019 Joel Parker Henderson
 License:: CreativeCommons License, Non-commercial Share Alike
 License:: LGPL, GNU Lesser General Public License
 
@@ -28,3 +29,4 @@ To make these very fast in Rails, try using the memoize approach:
     memoize :full_name
     memoize :list_name
   end
+
