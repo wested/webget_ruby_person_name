@@ -3,7 +3,7 @@
 = WebGet Ruby Gem: PersonName
 
 Author:: Joel Parker Henderson, joelparkerhenderson@gmail.com
-Copyright:: Copyright (c) 2006-2019 Joel Parker Henderson
+Copyright:: Copyright (c) 2006-2010 Joel Parker Henderson
 License:: CreativeCommons License, Non-commercial Share Alike
 License:: LGPL, GNU Lesser General Public License
 
@@ -85,21 +85,21 @@ module PersonName
   # Return true iff the person has a first name and its non-blank
 
   def first_name?
-   respond_to?(:first_name) and first_name and first_name.strip!=''
+   respond_to?(:first_name) and first_name and first_name!='' and first_name.strip!=''
   end
 
 
   # Return true iff the person has a middle name and its non-blank
 
   def middle_name?
-   respond_to?(:middle_name) and middle_name and middle_name.strip!=''
+   respond_to?(:middle_name) and middle_name and middle_name!='' and middle_name.strip!=''
   end
 
 
   # Return true iff the person has a last name and its non-blank
 
   def last_name?
-   respond_to?(:last_name) and last_name and last_name.strip!=''
+   respond_to?(:last_name) and last_name and last_name!='' and last_name.strip!=''
   end
 
 end
