@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version           = "1.0.2"
   s.author            = "WebGet"
   s.email             = "webget@webget.com"
-  s.homepage          = "http://webget.com/gems/webget_ruby_person_name"
+  s.homepage          = "http://webget.com/"
   s.signing_key       = '/home/webget/keys/certs/webget.com.rsa.private.key.and.certificate.pem'
   s.cert_chain        = ['/home/webget/keys/certs/webget.pem']
 

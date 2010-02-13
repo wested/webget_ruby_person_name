@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: PersonName</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./lib/webget_ruby_person_name_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/webget_ruby_person_name.rb">lib/webget_ruby_person_name.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000015">#first_name?</a></li>
+					
+					<li><a href="#M000002">#first_name_middle_initial_last_name</a></li>
+					
+					<li><a href="#M000006">#full_name</a></li>
+					
+					<li><a href="#M000017">#last_name?</a></li>
+					
+					<li><a href="#M000010">#list_name</a></li>
+					
+					<li><a href="#M000016">#middle_name?</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./INSTALL_txt.html">INSTALL.txt</a></li>
+				
+					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+				
+					<li class="file"><a href="./webget_ruby_person_name_gemspec.html">webget_ruby_person_name.gemspec</a></li>
+				
+					<li class="file"><a href="./webget_ruby_person_name_sha512_txt.html">webget_ruby_person_name.sha512.txt</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Person.html">Person</a></li>
+				
+					<li><a href="./PersonName.html">PersonName</a></li>
+				
+					<li><a href="./PersonNameTest.html">PersonNameTest</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">PersonName</h1>
+
+		<div id="description">
+			<h1>WebGet Ruby Gem: <a href="PersonName.html">PersonName</a></h1>
+<table>
+<tr><td valign="top">Author:</td><td>Joel Parker Henderson, joelparkerhenderson@gmail.com
+
+</td></tr>
+<tr><td valign="top">Copyright:</td><td>Copyright &#169; 2006-2010 Joel Parker Henderson
+
+</td></tr>
+<tr><td valign="top">License:</td><td>CreativeCommons License, Non-commercial Share Alike
+
+</td></tr>
+<tr><td valign="top">License:</td><td>LGPL, GNU Lesser General Public License
+
+</td></tr>
+</table>
+<p>
+Return the person&#8217;s name in various ways.
+</p>
+<h2>Example</h2>
+<pre>
+  class User &lt; ActiveRecord::Base
+    include PersonName
+  end
+
+  u=User.new
+  u.first_name = 'Zora'
+  u.middle_name = 'Neale'
+  u.last_name = 'Hurston'
+
+  u.full_name =&gt; &quot;Zora Neale Hurston&quot;
+  u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+</pre>
+<h2>Suggestion</h2>
+<p>
+To make these very fast in Rails, try using the memoize approach:
+</p>
+<pre>
+  class User &lt; ActiveRecord::Base
+    include PersonName
+    memoize :full_name
+    memoize :list_name
+  end
+</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="first-name--method" class="method-detail ">
+				<a name="M000015"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first_name?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return true iff the person has a first name and its non-blank
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="first-name--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name?</span>
+88:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:first_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+89:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="first-name-middle-initial-last-name-method" class="method-detail ">
+				<a name="M000002"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first_name_middle_initial_last_name</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the person&#8217;s first name + middle initial + last name
+</p>
+<h2>Example</h2>
+<pre>
+  u.first_name_middle_initial_last_name =&gt; &quot;Zora N Hurston&quot;
+</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="first-name-middle-initial-last-name-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_initial_last_name</span>
+45:    <span class="ruby-identifier">pieces</span> = []
+46:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+47:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">1</span>])   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+48:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+49:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+50:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="full-name-method" class="method-detail ">
+				<a name="M000006"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">full_name</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the person&#8217;s full name: first_name middle_name last_name
+</p>
+<h2>Example</h2>
+<pre>
+  u.full_name =&gt; &quot;Zora Neale Hurston&quot;
+</pre>
+<p>
+This method skips any piece of the name that is missing or blank.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="full-name-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 60</span>
+60:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full_name</span>
+61:     <span class="ruby-identifier">pieces</span> = []
+62:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+63:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+64:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+65:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+66:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="last-name--method" class="method-detail ">
+				<a name="M000017"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">last_name?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return true iff the person has a last name and its non-blank
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="last-name--source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 101</span>
+101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_name?</span>
+102:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:last_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+103:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="list-name-method" class="method-detail ">
+				<a name="M000010"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">list_name</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the person&#8217;s list name: last_name, first_name middle_name
+</p>
+<h2>Example</h2>
+<pre>
+  u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+</pre>
+<p>
+This method skips any piece of the name that is missing or blank.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="list-name-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_name</span>
+77:     <span class="ruby-identifier">pieces</span> = []
+78:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+79:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+80:     (<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span>(<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value str">','</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>))) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+81:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+82:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="middle-name--method" class="method-detail ">
+				<a name="M000016"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">middle_name?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return true iff the person has a middle name and its non-blank
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="middle-name--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 94</span>
+94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">middle_name?</span>
+95:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:middle_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+96:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
