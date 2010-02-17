@@ -31,55 +31,14 @@ To make these very fast in Rails, try using the memoize approach:
     memoize :list_name
   end
 
+==Notes
+
+The first_name, middle_name, and last_name fields must be strings.
+
 =end
 
 
 module PersonName
-
-  # Return the person's first name + middle initial + last name
-  #
-  # ==Example
-  #   u.first_name_middle_initial_last_name => "Zora N Hurston"
-
-  def first_name_middle_initial_last_name
-   pieces = []
-    (pieces << first_name.to_s)           if first_name?
-    (pieces << middle_name.to_s[0...1])   if middle_name?
-    (pieces << last_name.to_s)            if last_name?
-    return pieces.join(' ')
-  end
-
-
-  # Return the person's full name: first_name middle_name last_name
-  #
-  # ==Example
-  #   u.full_name => "Zora Neale Hurston"
-  #
-  # This method skips any piece of the name that is missing or blank.
-
-  def full_name
-    pieces = []
-    (pieces << first_name.to_s)     if first_name?
-    (pieces << middle_name.to_s)    if middle_name?
-    (pieces << last_name.to_s)      if last_name?
-    return pieces.join(' ')
-  end
-
-
-  # Return the person's list name: last_name, first_name middle_name
-  #
-  # ==Example
-  #   u.list_name => "Hurston, Zora Neale"
-  #
-  # This method skips any piece of the name that is missing or blank.
-
-  def list_name
-    pieces = []
-    (pieces << first_name.to_s)  if first_name?
-    (pieces << middle_name.to_s) if middle_name?
-    (pieces.unshift(last_name.to_s+(pieces.size>0 ? ',' : ''))) if last_name?
-    return pieces.join(' ')
-  end
 
 
   # Return true iff the person has a first name and its non-blank
@@ -101,5 +60,52 @@ module PersonName
   def last_name?
    respond_to?(:last_name) and last_name and last_name!='' and last_name.strip!=''
   end
+
+
+  # Return the person's first name + middle initial + last name
+  #
+  # ==Example
+  #   u.first_name_middle_initial_last_name => "Zora N Hurston"
+
+  def first_name_middle_initial_last_name
+   pieces = []
+    (pieces << first_name)           if first_name?
+    (pieces << middle_name[0...1])   if middle_name?
+    (pieces << last_name)            if last_name?
+    return pieces.join(' ')
+  end
+
+
+  # Return the person's full name: first_name middle_name last_name
+  #
+  # ==Example
+  #   u.full_name => "Zora Neale Hurston"
+  #
+  # This method skips any piece of the name that is missing or blank.
+
+  def full_name
+    pieces = []
+    (pieces << first_name)     if first_name?
+    (pieces << middle_name)    if middle_name?
+    (pieces << last_name)      if last_name?
+    return pieces.join(' ')
+  end
+
+
+  # Return the person's list name: last_name, first_name middle_name
+  #
+  # ==Example
+  #   u.list_name => "Hurston, Zora Neale"
+  #
+  # This method skips any piece of the name that is missing or blank.
+
+  def list_name
+    pieces = []
+    (pieces << first_name)  if first_name?
+    (pieces << middle_name) if middle_name?
+    (pieces.unshift(last_name+(pieces.size>0 ? ',' : ''))) if last_name?
+    return pieces.join(' ')
+  end
+
 
 end
