@@ -103,7 +103,10 @@ module PersonName
     pieces = []
     (pieces << first_name)  if first_name?
     (pieces << middle_name) if middle_name?
-    (pieces.unshift(last_name+(pieces.size>0 ? ',' : ''))) if last_name?
+    if last_name?
+      comma = pieces.size>0 ? ',' : ''
+      pieces.unshift(last_name+comma)
+    end
     return pieces.join(' ')
   end
 
