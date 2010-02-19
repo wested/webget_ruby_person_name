@@ -20,6 +20,8 @@ Return the person's name in various ways.
 
   u.full_name => "Zora Neale Hurston"
   u.list_name => "Hurston, Zora Neale"
+  u.first_name_middle_name => "Zora Neale"
+  u.first_name_middle_initial_last_name => "Zora N Hurston"
 
 ==Suggestion
 
@@ -29,4 +31,8 @@ To make these very fast in Rails, try using the memoize approach:
     memoize :full_name
     memoize :list_name
   end
+
+==Notes
+
+The first_name, middle_name, and last_name fields must be strings.
 

@@ -24,7 +24,7 @@
 	<div id="metadata">
 		<dl>
 			<dt class="modified-date">Last Modified</dt>
-			<dd class="modified-date">2010-02-12 18:37:14 -0800</dd>
+			<dd class="modified-date">2010-02-17 16:32:48 -0800</dd>
 
 			
 			<dt class="requires">Requires</dt>
@@ -74,6 +74,8 @@ Return the person&#8217;s name in various ways.
 
   u.full_name =&gt; &quot;Zora Neale Hurston&quot;
   u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+  u.first_name_middle_name =&gt; &quot;Zora Neale&quot;
+  u.first_name_middle_initial_last_name =&gt; &quot;Zora N Hurston&quot;
 </pre>
 <h2>Suggestion</h2>
 <p>
@@ -86,6 +88,10 @@ To make these very fast in Rails, try using the memoize approach:
     memoize :list_name
   end
 </pre>
+<h2>Notes</h2>
+<p>
+The first_name, middle_name, and last_name fields must be strings.
+</p>
 
 		</div>
 		

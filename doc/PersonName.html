@@ -52,17 +52,21 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#M000011">#first_name?</a></li>
+					<li><a href="#M000000">#first_name?</a></li>
 					
-					<li><a href="#M000000">#first_name_middle_initial_last_name</a></li>
+					<li><a href="#M000008">#first_name_middle_initial</a></li>
 					
-					<li><a href="#M000001">#full_name</a></li>
+					<li><a href="#M000013">#first_name_middle_initial_last_name</a></li>
 					
-					<li><a href="#M000013">#last_name?</a></li>
+					<li><a href="#M000005">#first_name_middle_name</a></li>
 					
-					<li><a href="#M000005">#list_name</a></li>
+					<li><a href="#M000018">#full_name</a></li>
 					
-					<li><a href="#M000012">#middle_name?</a></li>
+					<li><a href="#M000004">#last_name?</a></li>
+					
+					<li><a href="#M000019">#list_name</a></li>
+					
+					<li><a href="#M000003">#middle_name?</a></li>
 					
 				</ul>
 			</div>
@@ -155,6 +159,8 @@ Return the person&#8217;s name in various ways.
 
   u.full_name =&gt; &quot;Zora Neale Hurston&quot;
   u.list_name =&gt; &quot;Hurston, Zora Neale&quot;
+  u.first_name_middle_name =&gt; &quot;Zora Neale&quot;
+  u.first_name_middle_initial_last_name =&gt; &quot;Zora N Hurston&quot;
 </pre>
 <h2>Suggestion</h2>
 <p>
@@ -167,6 +173,10 @@ To make these very fast in Rails, try using the memoize approach:
     memoize :list_name
   end
 </pre>
+<h2>Notes</h2>
+<p>
+The first_name, middle_name, and last_name fields must be strings.
+</p>
 
 		</div>
 
@@ -183,7 +193,7 @@ To make these very fast in Rails, try using the memoize approach:
 
 		
 			<div id="first-name--method" class="method-detail ">
-				<a name="M000011"></a>
+				<a name="M000000"></a>
 
 				<div class="method-heading">
 				
@@ -204,10 +214,51 @@ Return true iff the person has a first name and its non-blank
 					<div class="method-source-code"
 						id="first-name--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 87</span>
-87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name?</span>
-88:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:first_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
-89:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name?</span>
+49:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:first_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+50:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="first-name-middle-initial-method" class="method-detail ">
+				<a name="M000008"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first_name_middle_initial</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the person&#8217;s first name + middle initial
+</p>
+<h2>Example</h2>
+<pre>
+  u.first_name_middle_initial =&gt; &quot;Zora N&quot;
+</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="first-name-middle-initial-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 85</span>
+85:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_initial</span>
+86:     <span class="ruby-identifier">pieces</span> = []
+87:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>)           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+88:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">1</span>])   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+89:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+90:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -217,7 +268,7 @@ Return true iff the person has a first name and its non-blank
 
 		
 			<div id="first-name-middle-initial-last-name-method" class="method-detail ">
-				<a name="M000000"></a>
+				<a name="M000013"></a>
 
 				<div class="method-heading">
 				
@@ -242,14 +293,55 @@ Return the person&#8217;s first name + middle initial + last name
 					<div class="method-source-code"
 						id="first-name-middle-initial-last-name-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 44</span>
-44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_initial_last_name</span>
-45:    <span class="ruby-identifier">pieces</span> = []
-46:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
-47:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">1</span>])   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
-48:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
-49:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
-50:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 98</span>
+ 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_initial_last_name</span>
+ 99:    <span class="ruby-identifier">pieces</span> = []
+100:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>)           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+101:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">1</span>])   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+102:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>)            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+103:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+104:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="first-name-middle-name-method" class="method-detail ">
+				<a name="M000005"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first_name_middle_name</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Return the person&#8217;s first name + middle name
+</p>
+<h2>Example</h2>
+<pre>
+  u.first_name_middle_name =&gt; &quot;Zora Neale&quot;
+</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="first-name-middle-name-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 72</span>
+72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first_name_middle_name</span>
+73:     <span class="ruby-identifier">pieces</span> = []
+74:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+75:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>)   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+76:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+77:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -259,7 +351,7 @@ Return the person&#8217;s first name + middle initial + last name
 
 		
 			<div id="full-name-method" class="method-detail ">
-				<a name="M000001"></a>
+				<a name="M000018"></a>
 
 				<div class="method-heading">
 				
@@ -287,14 +379,14 @@ This method skips any piece of the name that is missing or blank.
 					<div class="method-source-code"
 						id="full-name-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 60</span>
-60:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full_name</span>
-61:     <span class="ruby-identifier">pieces</span> = []
-62:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
-63:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
-64:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span>)      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
-65:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
-66:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full_name</span>
+115:     <span class="ruby-identifier">pieces</span> = []
+116:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>)     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+117:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+118:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">last_name</span>)      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+119:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+120:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -304,7 +396,7 @@ This method skips any piece of the name that is missing or blank.
 
 		
 			<div id="last-name--method" class="method-detail ">
-				<a name="M000013"></a>
+				<a name="M000004"></a>
 
 				<div class="method-heading">
 				
@@ -325,10 +417,10 @@ Return true iff the person has a last name and its non-blank
 					<div class="method-source-code"
 						id="last-name--source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 101</span>
-101:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_name?</span>
-102:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:last_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
-103:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_name?</span>
+63:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:last_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+64:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -338,7 +430,7 @@ Return true iff the person has a last name and its non-blank
 
 		
 			<div id="list-name-method" class="method-detail ">
-				<a name="M000005"></a>
+				<a name="M000019"></a>
 
 				<div class="method-heading">
 				
@@ -366,14 +458,17 @@ This method skips any piece of the name that is missing or blank.
 					<div class="method-source-code"
 						id="list-name-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 76</span>
-76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_name</span>
-77:     <span class="ruby-identifier">pieces</span> = []
-78:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">to_s</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
-79:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
-80:     (<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span>(<span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value str">','</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>))) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
-81:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
-82:   <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 130</span>
+130:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_name</span>
+131:     <span class="ruby-identifier">pieces</span> = []
+132:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">first_name</span>)  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">first_name?</span>
+133:     (<span class="ruby-identifier">pieces</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">middle_name</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">middle_name?</span>
+134:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_name?</span>
+135:       <span class="ruby-identifier">comma</span> = <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">&gt;</span><span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value str">','</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>
+136:       <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">last_name</span><span class="ruby-operator">+</span><span class="ruby-identifier">comma</span>)
+137:     <span class="ruby-keyword kw">end</span>
+138:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pieces</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+139:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -383,7 +478,7 @@ This method skips any piece of the name that is missing or blank.
 
 		
 			<div id="middle-name--method" class="method-detail ">
-				<a name="M000012"></a>
+				<a name="M000003"></a>
 
 				<div class="method-heading">
 				
@@ -404,10 +499,10 @@ Return true iff the person has a middle name and its non-blank
 					<div class="method-source-code"
 						id="middle-name--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 94</span>
-94:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">middle_name?</span>
-95:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:middle_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
-96:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/webget_ruby_person_name.rb, line 55</span>
+55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">middle_name?</span>
+56:    <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:middle_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name!</span>=<span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">middle_name</span>.<span class="ruby-identifier">strip!</span>=<span class="ruby-value str">''</span>
+57:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

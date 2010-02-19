@@ -21,6 +21,8 @@ Return the person's name in various ways.
 
   u.full_name => "Zora Neale Hurston"
   u.list_name => "Hurston, Zora Neale"
+  u.first_name_middle_name => "Zora Neale"
+  u.first_name_middle_initial_last_name => "Zora N Hurston"
 
 ==Suggestion
 
@@ -59,6 +61,32 @@ module PersonName
 
   def last_name?
    respond_to?(:last_name) and last_name and last_name!='' and last_name.strip!=''
+  end
+
+  
+  # Return the person's first name + middle name
+  #
+  # ==Example
+  #   u.first_name_middle_name => "Zora Neale"
+
+  def first_name_middle_name
+    pieces = []
+    (pieces << first_name)    if first_name?
+    (pieces << middle_name)   if middle_name?
+    return pieces.join(' ')
+  end
+  
+
+  # Return the person's first name + middle initial 
+  #
+  # ==Example
+  #   u.first_name_middle_initial => "Zora N"
+
+  def first_name_middle_initial
+    pieces = []
+    (pieces << first_name)           if first_name?
+    (pieces << middle_name[0...1])   if middle_name?
+    return pieces.join(' ')
   end
 
 
@@ -109,6 +137,5 @@ module PersonName
     end
     return pieces.join(' ')
   end
-
 
 end

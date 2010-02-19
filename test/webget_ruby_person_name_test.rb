@@ -3,6 +3,20 @@ require 'webget_ruby_person_name'
 
 class PersonNameTest < Test::Unit::TestCase
 
+ def test_first_name_middle_name
+  assert_equal("abc def",p("abc","def","ghi").first_name_middle_name)
+  assert_equal("abc"    ,p("abc",nil  ,"ghi").first_name_middle_name)
+  assert_equal("def"    ,p(nil ,"def" ,"ghi").first_name_middle_name)
+  assert_equal(""       ,p(nil ,nil   ,"ghi").first_name_middle_name)
+ end
+
+ def test_first_name_middle_initial
+  assert_equal("abc d",p("abc","def","ghi").first_name_middle_initial)
+  assert_equal("abc"  ,p("abc",nil  ,"ghi").first_name_middle_initial)
+  assert_equal("d"    ,p(nil ,"def" ,"ghi").first_name_middle_initial)
+  assert_equal(""     ,p(nil ,nil   ,"ghi").first_name_middle_initial)
+ end
+
  def test_first_name_middle_initial_last_name_with_first_name
   assert_equal("abc",p("abc",nil,nil).first_name_middle_initial_last_name)
  end
