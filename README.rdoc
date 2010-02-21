@@ -14,7 +14,9 @@ Access a human name from the fields of an ActiveRecord-based model in several co
 * first_name_last_name
 * list_name: last_name, first_name
 
-*Note* that the model must have attributes called first_name, middle_name, and last_name and all of these fields must be strings.
+*Note* that the model doesn't need attributes called first_name, middle_name, and last_name to call the gem's methods; the methods are protected by testing with respond_to?(name_field).
+
+However all of these fields which are present must be strings.
 
 ==Example
   class User < ActiveRecord::Base
