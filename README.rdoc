@@ -9,9 +9,10 @@ License:: LGPL, GNU Lesser General Public License
 Access a human name from the fields of an ActiveRecord-based model in several combinations:
 * first_name_middle_name
 * first_name_middle_initial
-* first_name_middle_name_last_name
+* fullname: first_name_middle_name_last_name
 * first_name_middle_initial_last_name
 * first_name_last_name
+* list_name: last_name, first_name
 
 *Note* that the model must have attributes called first_name, middle_name, and last_name and all of these fields must be strings.
 
