@@ -7,35 +7,41 @@ Copyright:: Copyright (c) 2006-2010 Joel Parker Henderson
 License:: CreativeCommons License, Non-commercial Share Alike
 License:: LGPL, GNU Lesser General Public License
 
-Return the person's name in various ways.
+Access a human name from the fields of an ActiveRecord-based model in several combinations:
+* first_name_middle_name
+* first_name_middle_initial
+* fullname: first_name_middle_name_last_name
+* first_name_middle_initial_last_name
+* first_name_last_name
+* list_name: last_name, first_name
+
+*Note* that the model doesn't need attributes called first_name, middle_name, and last_name to call the gem's methods; the methods are protected by testing with respond_to?(name_field).
+
+However all of these fields which are present must be strings.
 
 ==Example
   class User < ActiveRecord::Base
     include PersonName
   end
-
-  u=User.new  
-  u.first_name = 'Zora'
-  u.middle_name = 'Neale'
-  u.last_name = 'Hurston'
-
+  
+  u=User.first
+  => {first_name => 'Zora', middle_name => 'Neale', last_name => 'Hurston'}
+  
   u.full_name => "Zora Neale Hurston"
   u.list_name => "Hurston, Zora Neale"
   u.first_name_middle_name => "Zora Neale"
   u.first_name_middle_initial_last_name => "Zora N Hurston"
 
-==Suggestion
+==Performance Tip
 
-To make these very fast in Rails, try using the memoize approach:
+Use memoize to make these very fast in Rails:
+
   class User < ActiveRecord::Base
     include PersonName
     memoize :full_name
     memoize :list_name
   end
 
-==Notes
-
-The first_name, middle_name, and last_name fields must be strings.
 
 =end
 
