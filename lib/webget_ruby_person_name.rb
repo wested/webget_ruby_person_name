@@ -49,21 +49,27 @@ Use memoize to make these very fast in Rails:
 module PersonName
 
 
-  # Return true iff the person has a first name and its non-blank
+  # Return true if the person has a first name and its non-blank, false otherwise
+  # 
+  # @return [Boolean] person has a first name and its non-blank
 
   def first_name?
    respond_to?(:first_name) and first_name and first_name!='' and first_name.strip!=''
   end
 
 
-  # Return true iff the person has a middle name and its non-blank
+  # Return true if the person has a middle name and its non-blank, false otherwise
+  # 
+  # @return [Boolean] person has a middle name and its non-blank
 
   def middle_name?
    respond_to?(:middle_name) and middle_name and middle_name!='' and middle_name.strip!=''
   end
 
 
-  # Return true iff the person has a last name and its non-blank
+  # Return true if the person has a last name and its non-blank, false otherwise
+  # 
+  # @return [Boolean] person has a last name and its non-blank
 
   def last_name?
    respond_to?(:last_name) and last_name and last_name!='' and last_name.strip!=''
@@ -72,7 +78,9 @@ module PersonName
   
   # Return the person's first name + middle name
   #
-  # ==Example
+  # @return [String] person's first name + middle name
+  # 
+  # @example
   #   u.first_name_middle_name => "Zora Neale"
 
   def first_name_middle_name
@@ -85,7 +93,9 @@ module PersonName
 
   # Return the person's first name + middle initial 
   #
-  # ==Example
+  # @return [String] person's first name + middle initial
+  # 
+  # @example
   #   u.first_name_middle_initial => "Zora N"
 
   def first_name_middle_initial
@@ -98,7 +108,9 @@ module PersonName
 
   # Return the person's first name + middle initial + last name
   #
-  # ==Example
+  # @return [String] person's first name + middle initial + last name
+  # 
+  # @example
   #   u.first_name_middle_initial_last_name => "Zora N Hurston"
 
   def first_name_middle_initial_last_name
@@ -112,7 +124,9 @@ module PersonName
 
   # Return the person's full name: first_name middle_name last_name
   #
-  # ==Example
+  # @return [String] person's first name + middle name +last_name
+  # 
+  # @example
   #   u.full_name => "Zora Neale Hurston"
   #
   # This method skips any piece of the name that is missing or blank.
@@ -128,7 +142,9 @@ module PersonName
 
   # Return the person's list name: last_name, first_name middle_name
   #
-  # ==Example
+  # @return [String] person's last name + ', ' + first name
+  # 
+  # @example
   #   u.list_name => "Hurston, Zora Neale"
   #
   # This method skips any piece of the name that is missing or blank.
