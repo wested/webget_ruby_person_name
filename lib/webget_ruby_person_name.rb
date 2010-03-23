@@ -45,7 +45,9 @@ Use memoize to make these very fast in Rails:
 
 =end
 
-
+  # Use as a mixin to a class which has attributes for names
+  # 
+  # Currently supports only first_name, middle_name and last_name
 module PersonName
 
 

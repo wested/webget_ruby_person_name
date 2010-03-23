@@ -14,6 +14,8 @@
 <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
+<link rel="stylesheet" href="css/pygments.css" type="text/css" media="screen" charset="utf-8" />
+
   </head>
   <body>
     <script type="text/javascript" charset="utf-8">
@@ -62,7 +64,21 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Use as a mixin to a class which has attributes for names
+</p>
+<p>
+Currently supports only first_name, middle_name and last_name
+</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
 
 
   <h2>Instance Method Summary</h2>
@@ -307,12 +323,12 @@ person has a first name and its non-blank
       <pre class="lines">
 
 
-56
-57
-58</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id first_name?'>first_name?</span>
  <span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:first_name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id first_name'>first_name</span> <span class='kw'>and</span> <span class='id first_name'>first_name</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id first_name'>first_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
@@ -373,15 +389,15 @@ person&#8217;s first name + middle initial
       <pre class="lines">
 
 
-101
-102
 103
 104
 105
-106</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id first_name_middle_initial'>first_name_middle_initial</span>
   <span class='id pieces'>pieces</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -445,16 +461,16 @@ person&#8217;s first name + middle initial + last name
       <pre class="lines">
 
 
-116
-117
 118
 119
 120
 121
-122</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id first_name_middle_initial_last_name'>first_name_middle_initial_last_name</span>
  <span class='id pieces'>pieces</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -519,15 +535,15 @@ person&#8217;s first name + middle name
       <pre class="lines">
 
 
-86
-87
 88
 89
 90
-91</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id first_name_middle_name'>first_name_middle_name</span>
   <span class='id pieces'>pieces</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -593,16 +609,16 @@ person&#8217;s first name + middle name +last_name
       <pre class="lines">
 
 
-134
-135
 136
 137
 138
 139
-140</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id full_name'>full_name</span>
   <span class='id pieces'>pieces</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -660,12 +676,12 @@ person has a last name and its non-blank
       <pre class="lines">
 
 
-74
-75
-76</pre>
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id last_name?'>last_name?</span>
  <span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:last_name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id last_name'>last_name</span> <span class='kw'>and</span> <span class='id last_name'>last_name</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
@@ -728,8 +744,6 @@ person&#8217;s last name + &#8217;, &#8217; + first name
       <pre class="lines">
 
 
-152
-153
 154
 155
 156
@@ -737,10 +751,12 @@ person&#8217;s last name + &#8217;, &#8217; + first name
 158
 159
 160
-161</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id list_name'>list_name</span>
   <span class='id pieces'>pieces</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -801,12 +817,12 @@ person has a middle name and its non-blank
       <pre class="lines">
 
 
-65
-66
-67</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/webget_ruby_person_name.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id middle_name?'>middle_name?</span>
  <span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:middle_name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id middle_name'>middle_name</span> <span class='kw'>and</span> <span class='id middle_name'>middle_name</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id middle_name'>middle_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
@@ -821,7 +837,7 @@ person has a middle name and its non-blank
 </div>
     
     <div id="footer">
-  Generated on Sun Mar 21 12:35:16 2010 by 
+  Generated on Tue Mar 23 11:25:31 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.9.1).
 </div>
